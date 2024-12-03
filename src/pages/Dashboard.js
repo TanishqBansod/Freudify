@@ -1,12 +1,19 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import NavBar from "./navbar";
 
 const Dashboard = () => {
-  const { state } = useLocation();
-  const { analysis } = state || {
-    analysis: { summary: "No analysis data available", meaning: "N/A" },
-  };
+  const [analysis, setAnalysis] = useState({
+    summary: "No analysis data available",
+    meaning: "N/A",
+  });
+
+  useEffect(() => {
+    // Retrieve dream analysis from localStorage
+    const storedAnalysis = localStorage.getItem("dreamAnalysis");
+    if (storedAnalysis) {
+      setAnalysis(JSON.parse(storedAnalysis));
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-800 to-gray-800 text-gray-100">

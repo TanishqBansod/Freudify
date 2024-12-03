@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "./navbar"; // Adjust the import path as needed
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext"; // Import the AuthContext
 
 function Register() {
@@ -78,6 +78,12 @@ function Register() {
             >
               Register
             </button>
+            <Link 
+            to="/login"
+            className="block py-2 px-2 text-teal-700 hover:text-black">
+              Click here to Login
+            </Link>
+
           </form>
         </div>
       </div>
