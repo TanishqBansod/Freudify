@@ -11,6 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const dreamRoutes = require('./routes/dream'); // The consolidated dream route
+
+// Use the dream route
+app.use('/api/dreams', dreamRoutes);
+
+
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })

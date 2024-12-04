@@ -1,23 +1,14 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import hamburgerIcon from "./hamburgericon.png";
 import { useAuth } from "./AuthContext";
 
 function NavBar({ userName }) {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleHomeClick = () => {
-    if (isAuthenticated) {
-      navigate("/dashboard"); // Redirect to the home/dashboard page if authenticated
-    } else {
-      navigate("/login"); // Redirect to login if not authenticated
-    }
   };
 
   return (
@@ -49,51 +40,50 @@ function NavBar({ userName }) {
           <img src={hamburgerIcon} alt="Close icon" className="w-6 h-6" />
         </button>
         <nav className="mt-4">
-        <Link
-  to="/home"
-  className="block py-2 px-4 text-teal-200 hover:text-white"
-  onClick={toggleMenu}
->
-  Dream Analyzer
-</Link>
-          <Link
-            to="/login"
-            className="block py-2 px-4 text-teal-200 hover:text-white"
-            onClick={toggleMenu}
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="block py-2 px-4 text-teal-200 hover:text-white"
-            onClick={toggleMenu}
-          >
-            Register
-          </Link>
-          <Link
-            to="/dashboard"
-            className="block py-2 px-4 text-teal-200 hover:text-white"
-            onClick={toggleMenu}
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="/home"
-            className="block py-2 px-4 text-teal-200 hover:text-white"
-            onClick={toggleMenu}
-          >
-            Login
-          </Link>
-          {isAuthenticated && (
-            <button
-              className="block py-2 px-4 text-teal-200 hover:text-white text-left"
-              onClick={() => {
-                logout();
-                toggleMenu();
-              }}
-            >
-              Logout
-            </button>
+          {/* Conditional links based on authentication */}
+          {!isAuthenticated ? (
+            <>
+              <Link
+                to="/login"
+                className="block py-2 px-4 text-teal-200 hover:text-white"
+                onClick={toggleMenu}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="block py-2 px-4 text-teal-200 hover:text-white"
+                onClick={toggleMenu}
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/dashboard"
+                className="block py-2 px-4 text-teal-200 hover:text-white"
+                onClick={toggleMenu}
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/dream-history"
+                className="block py-2 px-4 text-teal-200 hover:text-white"
+                onClick={toggleMenu}
+              >
+                History
+              </Link>
+              <button
+                className="block py-2 px-4 text-teal-200 hover:text-white text-left"
+                onClick={() => {
+                  logout();
+                  toggleMenu();
+                }}
+              >
+                Logout
+              </button>
+            </>
           )}
         </nav>
       </div>

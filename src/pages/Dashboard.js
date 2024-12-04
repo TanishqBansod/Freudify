@@ -7,6 +7,15 @@ const Dashboard = () => {
   const [analysisResult, setAnalysisResult] = useState(""); // State to store the API result
   const [loading, setLoading] = useState(false); // New state to track loading status
 
+  // Function to bold text wrapped in asterisks (*) and remove asterisks
+  const formatText = (text) => {
+    return text.replace(/\*(.*?)\*/g, (match, p1) => {
+      // Remove the asterisks and return the bolded text without any additional characters like colons
+      return `<strong>${p1}</strong>`;
+    });
+  };
+  
+
   // Handler for the "Analyze Dream" button
   const handleAnalyzeDream = async () => {
     setLoading(true); // Set loading to true when the request starts
@@ -14,7 +23,9 @@ const Dashboard = () => {
     try {
       const result = await analyzeDream(dreamText); // Call the API with the input
       console.log("Generated Content:", result); // Log the result
-      setAnalysisResult(result); // Save the result to state
+      // Format the result to bold text where necessary
+      const formattedResult = formatText(result);
+      setAnalysisResult(formattedResult); // Save the formatted result to state
     } catch (error) {
       console.error("Error analyzing dream:", error.message);
     } finally {
@@ -29,7 +40,7 @@ const Dashboard = () => {
 
       <div className="container mx-auto py-10 px-4">
         {/* Page Title */}
-        <h1 className="text-4xl font-bold text-center mb-6">Dream Analysis</h1>
+        <h1 className="text-4xl font-bold text-center mt-20 mb-4">Dream Analysis</h1>
 
         <div className="bg-white text-gray-800 shadow-lg rounded-lg p-6 max-w-3xl mx-auto">
           {/* Dream Input Section */}
@@ -59,7 +70,8 @@ const Dashboard = () => {
           {analysisResult && !loading && (
             <div className="mt-6">
               <h3 className="text-xl font-semibold mb-4 text-purple-700">Analysis Result</h3>
-              <p className="text-lg">{analysisResult}</p>
+              {/* Render formatted HTML content */}
+              <p className="text-lg" dangerouslySetInnerHTML={{ __html: analysisResult }} />
             </div>
           )}
         </div>

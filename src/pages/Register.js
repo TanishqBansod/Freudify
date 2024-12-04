@@ -13,22 +13,22 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/auth/register", {
         email,
         password,
       });
-
-      // Store the token in localStorage
+  
+      // Rest of your existing code remains the same
       const { token } = response.data;
-      localStorage.setItem("authToken", token);
-
-      // Update authentication state
-      setIsAuthenticated(true);
-
-      // Redirect to the home page after successful registration
-      navigate("/");
+      if (token) {
+        localStorage.setItem("authToken", token);
+        setIsAuthenticated(true);
+        navigate("/");
+      } else {
+        setMessage("Registration failed. No token received.");
+      }
     } catch (error) {
       setMessage(
         error.response?.data?.message || "Registration failed. Try again."
@@ -79,11 +79,11 @@ function Register() {
               Register
             </button>
             <Link 
-            to="/login"
-            className="block py-2 px-2 text-teal-700 hover:text-black">
-              Click here to Login
+              to="/login"
+              className="block py-2 px-2 text-teal-700 hover:text-black mt-4 text-center"
+            >
+              Already have an account? Click here to Login
             </Link>
-
           </form>
         </div>
       </div>
