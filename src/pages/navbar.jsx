@@ -67,13 +67,7 @@ function NavBar({ userName }) {
               >
                 Dashboard
               </Link>
-              <Link
-                to="/dream-history"
-                className="block py-2 px-4 text-teal-200 hover:text-white"
-                onClick={toggleMenu}
-              >
-                History
-              </Link>
+
               <button
                 className="block py-2 px-4 text-teal-200 hover:text-white text-left"
                 onClick={() => {

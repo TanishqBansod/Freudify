@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import DreamHistory from "./pages/DreamHistory"; // Import the DreamHistory page
 import { AuthProvider, useAuth } from "./pages/AuthContext";
 
 function AppRoutes() {
@@ -32,11 +31,6 @@ function AppRoutes() {
         element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />}
       />
 
-      {/* Only show Dream History page if authenticated */}
-      <Route
-        path="/dream-history"
-        element={isAuthenticated ? <DreamHistory /> : <Navigate to="/login" replace />}
-      />
     </Routes>
   );
 }
