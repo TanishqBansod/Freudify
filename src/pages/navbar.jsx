@@ -49,15 +49,13 @@ function NavBar({ userName }) {
           <img src={hamburgerIcon} alt="Close icon" className="w-6 h-6" />
         </button>
         <nav className="mt-4">
-          <button
-            className="block py-2 px-4 text-teal-200 hover:text-white text-left"
-            onClick={() => {
-              handleHomeClick();
-              toggleMenu();
-            }}
-          >
-            Home
-          </button>
+        <Link
+  to="/home"
+  className="block py-2 px-4 text-teal-200 hover:text-white"
+  onClick={toggleMenu}
+>
+  Dream Analyzer
+</Link>
           <Link
             to="/login"
             className="block py-2 px-4 text-teal-200 hover:text-white"
@@ -78,6 +76,13 @@ function NavBar({ userName }) {
             onClick={toggleMenu}
           >
             Dashboard
+          </Link>
+          <Link
+            to="/home"
+            className="block py-2 px-4 text-teal-200 hover:text-white"
+            onClick={toggleMenu}
+          >
+            Login
           </Link>
           {isAuthenticated && (
             <button
