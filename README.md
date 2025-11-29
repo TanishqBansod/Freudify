@@ -1,3 +1,5 @@
+<img width="439" height="401" alt="Freudify Icon" src="https://github.com/user-attachments/assets/76759867-0be3-469b-bafe-f56ea082bd65" />
+
 ## Inspiration
 Freudify was born out of my fascination with the subconscious and its mysterious expressions through dreams. While taking a psychology class, I delved into Sigmund Freud’s work on dream analysis and became captivated by the idea of uncovering hidden thoughts and emotions. The inspiration solidified when I saw a TV show where a child psychologist’s daughter asked what her dream about kissing meant—a simple question that highlighted our universal curiosity about dreams. Combining this insight with my passion for technology, I envisioned Freudify as a platform to merge psychology with AI, making dream interpretation accessible and meaningful for everyone.
 
